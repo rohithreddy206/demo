@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecruitPro — Sign In</title>
+  <meta name="description" content="Sign in to RecruitPro Recruitment Management System" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body class="auth-page">
+
+  <div class="auth-card">
+    <div class="auth-card-header">
+      <span class="auth-logo-icon">💼</span>
+      <h1>RecruitPro</h1>
+      <p>Recruitment Management System</p>
+    </div>
+
+    <div id="login-error" class="auth-error" role="alert"></div>
+
+    <form id="login-form" class="auth-form" novalidate>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="username"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+      <button type="submit" id="login-btn" class="auth-submit-btn">Sign In</button>
+    </form>
+
+    <div class="auth-hint">
+      <strong>Demo Credentials</strong><br />
+      Manager &nbsp;→ manager@demo.com / demo1234<br />
+      Recruiter → recruiter@demo.com / demo1234
+    </div>
+  </div>
+
+  <!-- Scripts: api.js must load before auth.js -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

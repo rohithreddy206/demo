@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecruitPro — Add Candidate</title>
+  <meta name="description" content="Register a new candidate profile in RecruitPro" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/forms.css" />
+  <link rel="stylesheet" href="css/candidate.css" />
+</head>
+
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" role="navigation" aria-label="Main Navigation">
+      <div class="sidebar-logo">
+        <div class="logo-text">
+          <span class="logo-icon">💼</span> RecruitPro
+        </div>
+        <div class="logo-sub">Recruitment Management</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" id="nav-dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+        <a href="create-job.html" id="nav-create"><span class="nav-icon">➕</span> Create Job</a>
+        <a href="update-job.html" id="nav-update"><span class="nav-icon">✏️</span> Update Job</a>
+        <a href="add-candidate.html" class="active" id="nav-candidate"><span class="nav-icon">👤</span> Add
+          Candidate</a>
+        <a href="#" id="logout-btn"><span class="nav-icon">🚪</span> Logout</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <span class="user-name" id="sidebar-user-name">—</span>
+          <span class="user-role-badge" id="sidebar-user-role">—</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <div id="toast-container" aria-live="polite"></div>
+
+      <!-- Page header -->
+      <div class="page-header cand-page-header">
+        <div class="page-header-left">
+          <div class="page-header-icon">👤</div>
+          <div>
+            <h1>Candidate Registration</h1>
+            <p>Add a new candidate profile to the talent pool</p>
+          </div>
+        </div>
+        <span class="step-indicator" id="step-indicator">Step 1 of 3</span>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-bar-wrapper">
+        <div class="progress-steps">
+          <div class="progress-step active" data-step="1">
+            <div class="step-bubble">1</div>
+            <span>Personal</span>
+          </div>
+          <div class="progress-connector"></div>
+          <div class="progress-step" data-step="2">
+            <div class="step-bubble">2</div>
+            <span>Professional</span>
+          </div>
+          <div class="progress-connector"></div>
+          <div class="progress-step" data-step="3">
+            <div class="step-bubble">3</div>
+            <span>Compensation &amp; Resume</span>
+          </div>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-fill" style="width:33%"></div>
+        </div>
+      </div>
+
+      <form id="candidate-form" novalidate enctype="multipart/form-data">
+
+        <!-- ══ STEP 1: Personal Details ══ -->
+        <div class="form-step active" id="step-1">
+          <div class="card candidate-card">
+            <div class="card-title">
+              <span class="card-title-icon">🪪</span> Personal Details
+              <span class="card-badge">Step 1</span>
+            </div>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="candidate_id">Candidate ID <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">🆔</span>
+                  <input type="text" id="candidate_id" name="candidate_id" placeholder="e.g. CAND-2024-001" required
+                    autocomplete="off" />
+                </div>
+                <span class="field-error" id="err-candidate_id"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="full_name">Full Name <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">👤</span>
+                  <input type="text" id="full_name" name="full_name" placeholder="Enter full name" required />
+                </div>
+                <span class="field-error" id="err-full_name"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="phone_number">Phone Number <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">📞</span>
+                  <input type="tel" id="phone_number" name="phone_number" placeholder="+91 9876543210" required />
+                </div>
+                <span class="field-error" id="err-phone_number"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">✉️</span>
+                  <input type="email" id="email" name="email" placeholder="candidate@email.com" required />
+                </div>
+                <span class="field-error" id="err-email"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="current_location">Current Location <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">📍</span>
+                  <input type="text" id="current_location" name="current_location"
+                    placeholder="e.g. Bengaluru, Karnataka" required />
+                </div>
+                <span class="field-error" id="err-current_location"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="recruiter_name">Recruiter Name <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">🧑‍💼</span>
+                  <input type="text" id="recruiter_name" name="recruiter_name" placeholder="e.g. Sam Rivera" required />
+                </div>
+                <span class="field-error" id="err-recruiter_name"></span>
+              </div>
+
+            </div>
+          </div>
+          <div class="step-actions">
+            <span></span>
+            <button type="button" class="btn-primary btn-next" data-next="2">Next: Professional Details →</button>
+          </div>
+        </div>
+
+        <!-- ══ STEP 2: Professional Details ══ -->
+        <div class="form-step" id="step-2">
+          <div class="card candidate-card">
+            <div class="card-title">
+              <span class="card-title-icon">💼</span> Professional Details
+              <span class="card-badge">Step 2</span>
+            </div>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="current_company">Current / Last Company</label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">🏢</span>
+                  <input type="text" id="current_company" name="current_company" placeholder="e.g. Infosys Ltd." />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="total_experience">Total Experience <span class="req">*</span></label>
+                <div class="input-icon-wrap select-wrap">
+                  <span class="input-icon">⏱️</span>
+                  <select id="total_experience" name="total_experience" required>
+                    <option value="" disabled selected>Select experience</option>
+                    <option value="Fresher">Fresher (0 years)</option>
+                    <option value="0-1 Years">0 – 1 year</option>
+                    <option value="1-2 Years">1 – 2 years</option>
+                    <option value="2-3 Years">2 – 3 years</option>
+                    <option value="3-5 Years">3 – 5 years</option>
+                    <option value="5-7 Years">5 – 7 years</option>
+                    <option value="7-10 Years">7 – 10 years</option>
+                    <option value="10+ Years">10+ years</option>
+                  </select>
+                </div>
+                <span class="field-error" id="err-total_experience"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="relevant_experience">Relevant Experience (Years)</label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">📈</span>
+                  <input type="number" id="relevant_experience" name="relevant_experience" min="0" max="50" step="0.5"
+                    placeholder="e.g. 3" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="highest_education">Highest Education <span class="req">*</span></label>
+                <div class="input-icon-wrap select-wrap">
+                  <span class="input-icon">🎓</span>
+                  <select id="highest_education" name="highest_education" required>
+                    <option value="" disabled selected>Select education</option>
+                    <option value="10th / SSLC">10th / SSLC</option>
+                    <option value="12th / PUC / Diploma">12th / PUC / Diploma</option>
+                    <option value="Bachelor's Degree">Bachelor's Degree (UG)</option>
+                    <option value="Master's Degree">Master's Degree (PG)</option>
+                    <option value="PhD / Doctorate">PhD / Doctorate</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <span class="field-error" id="err-highest_education"></span>
+              </div>
+
+              <!-- Skills tag input – full width -->
+              <div class="form-group full-width">
+                <label for="skill-input">Skills <span class="req">*</span></label>
+                <div class="skills-container" id="skills-container" tabindex="0">
+                  <div class="skill-tags" id="skill-tags"></div>
+                  <input type="text" id="skill-input" placeholder="Type a skill and press Enter or comma…"
+                    autocomplete="off" />
+                </div>
+                <p class="field-hint">Press <kbd>Enter</kbd> or <kbd>,</kbd> to add · Click tag to remove</p>
+                <input type="hidden" id="skills_hidden" name="skills" />
+                <span class="field-error" id="err-skills"></span>
+              </div>
+
+            </div>
+          </div>
+          <div class="step-actions">
+            <button type="button" class="btn-reset btn-prev" data-prev="1">← Back</button>
+            <button type="button" class="btn-primary btn-next" data-next="3">Next: Compensation →</button>
+          </div>
+        </div>
+
+        <!-- ══ STEP 3: Compensation & Resume ══ -->
+        <div class="form-step" id="step-3">
+          <div class="card candidate-card">
+            <div class="card-title">
+              <span class="card-title-icon">💰</span> Compensation &amp; Availability
+              <span class="card-badge">Step 3</span>
+            </div>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="current_ctc">Current CTC (₹ LPA) <span class="req">*</span></label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">₹</span>
+                  <input type="number" id="current_ctc" name="current_ctc" min="0" step="0.1" placeholder="e.g. 8.5"
+                    required />
+                </div>
+                <span class="field-error" id="err-current_ctc"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="expected_ctc">Expected CTC (₹ LPA)</label>
+                <div class="input-icon-wrap">
+                  <span class="input-icon">💸</span>
+                  <input type="number" id="expected_ctc" name="expected_ctc" min="0" step="0.1" placeholder="e.g. 12" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="notice_period">Notice Period <span class="req">*</span></label>
+                <div class="input-icon-wrap select-wrap">
+                  <span class="input-icon">⏳</span>
+                  <select id="notice_period" name="notice_period" required>
+                    <option value="" disabled selected>Select notice period</option>
+                    <option value="Immediate Joiner">Immediate Joiner</option>
+                    <option value="15 Days">15 Days</option>
+                    <option value="30 Days">30 Days</option>
+                    <option value="45 Days">45 Days</option>
+                    <option value="60 Days">60 Days</option>
+                    <option value="90 Days">90 Days</option>
+                    <option value="Currently Serving Notice">Currently Serving Notice</option>
+                  </select>
+                </div>
+                <span class="field-error" id="err-notice_period"></span>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="reason_for_job_change">Reason for Job Change</label>
+                <textarea id="reason_for_job_change" name="reason_for_job_change" rows="3"
+                  placeholder="e.g. Looking for better growth opportunities, relocation…"></textarea>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- CTC Comparison card -->
+          <div class="ctc-compare-card" id="ctc-compare" style="display:none">
+            <div class="ctc-item"><span class="ctc-label">Current CTC</span><span class="ctc-value"
+                id="ctc-current-display">—</span></div>
+            <div class="ctc-arrow">→</div>
+            <div class="ctc-item"><span class="ctc-label">Expected CTC</span><span class="ctc-value accent"
+                id="ctc-expected-display">—</span></div>
+            <div class="ctc-item"><span class="ctc-label">Hike</span><span class="ctc-value success"
+                id="ctc-hike-display">—</span></div>
+          </div>
+
+          <!-- Resume Upload -->
+          <div class="card candidate-card" style="margin-top:16px;">
+            <div class="card-title"><span class="card-title-icon">📄</span> Resume Upload</div>
+            <div class="upload-zone" id="upload-zone" tabindex="0" role="button" aria-label="Upload resume">
+              <div class="upload-icon">⬆️</div>
+              <p class="upload-primary">Drag &amp; drop your resume here</p>
+              <p class="upload-secondary">or <span class="upload-link" id="upload-trigger">click to browse</span></p>
+              <p class="upload-hint">PDF, DOC, DOCX &nbsp;·&nbsp; Max 5 MB</p>
+              <input type="file" id="resume_file" name="resume" accept=".pdf,.doc,.docx" style="display:none" />
+            </div>
+            <div class="file-preview" id="file-preview" style="display:none">
+              <div class="file-icon" id="file-icon">📄</div>
+              <div class="file-meta">
+                <div class="file-name" id="file-name">—</div>
+                <div class="file-size" id="file-size">—</div>
+              </div>
+              <button type="button" class="btn-remove-file" id="remove-file" title="Remove">✕</button>
+            </div>
+          </div>
+
+          <!-- Profile review summary -->
+          <div class="review-summary" style="margin-top:16px;">
+            <div class="review-title">📋 Profile Summary</div>
+            <div class="review-grid" id="review-grid"></div>
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-reset btn-prev" data-prev="2">← Back</button>
+            <button type="submit" id="submit-btn" class="btn-primary btn-submit">
+              <span id="submit-text">✅ Save Candidate Profile</span>
+              <span class="spinner" id="submit-spinner" style="display:none"></span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/add-candidate.js"></script>
+</body>
+
+</html>

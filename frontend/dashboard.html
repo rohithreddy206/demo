@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecruitPro — Dashboard</title>
+  <meta name="description" content="RecruitPro Dashboard — overview of all recruitment activity" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" role="navigation" aria-label="Main Navigation">
+      <div class="sidebar-logo">
+        <div class="logo-text">
+          <span class="logo-icon">💼</span> RecruitPro
+        </div>
+        <div class="logo-sub">Recruitment Management</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="active" id="nav-dashboard">
+          <span class="nav-icon">📊</span> Dashboard
+        </a>
+        <a href="create-job.html" id="nav-create">
+          <span class="nav-icon">➕</span> Create Job
+        </a>
+        <a href="update-job.html" id="nav-update">
+          <span class="nav-icon">✏️</span> Update Job
+        </a>
+        <a href="add-candidate.html" id="nav-candidate">
+          <span class="nav-icon">👤</span> Add Candidate
+        </a>
+        <a href="#" id="logout-btn">
+          <span class="nav-icon">🚪</span> Logout
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <span class="user-name" id="sidebar-user-name">—</span>
+          <span class="user-role-badge" id="sidebar-user-role">—</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <div id="toast-container" aria-live="polite"></div>
+
+      <div class="page-header">
+        <h1>Dashboard</h1>
+        <p class="dashboard-greeting">
+          Welcome back, <strong id="greeting-name">—</strong>! Here's a snapshot of your recruitment activity.
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card" style="--accent: #2563EB; --accent-light: #EFF6FF;">
+          <div class="stat-icon" style="color: #2563EB;">📋</div>
+          <div class="stat-body">
+            <div class="stat-label">Total Job Openings</div>
+            <div class="stat-value loading" id="total-jobs-count">Loading…</div>
+          </div>
+        </div>
+        <div class="stat-card" style="--accent: #7C3AED; --accent-light: #F5F3FF;">
+          <div class="stat-icon" style="color: #7C3AED;">👥</div>
+          <div class="stat-body">
+            <div class="stat-label">Total Candidates</div>
+            <div class="stat-value loading" id="total-candidates-count">Loading…</div>
+          </div>
+        </div>
+        <div class="stat-card" style="--accent: #0891B2; --accent-light: #ECFEFF;">
+          <div class="stat-icon" style="color: #0891B2;">🗓️</div>
+          <div class="stat-body">
+            <div class="stat-label">Interviews Scheduled</div>
+            <div class="stat-value loading" id="total-interviews-count">Loading…</div>
+          </div>
+        </div>
+        <div class="stat-card" style="--accent: #16A34A; --accent-light: #F0FFF4;">
+          <div class="stat-icon" style="color: #16A34A;">🎉</div>
+          <div class="stat-body">
+            <div class="stat-label">Offers Extended</div>
+            <div class="stat-value loading" id="total-offers-count">Loading…</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="qa-grid">
+          <a href="create-job.html" class="qa-btn">
+            <span class="qa-icon">➕</span> Create Job Requirement
+          </a>
+          <a href="update-job.html" class="qa-btn">
+            <span class="qa-icon">✏️</span> Update Job Requirement
+          </a>
+          <a href="add-candidate.html" class="qa-btn">
+            <span class="qa-icon">👤</span> Add Candidate
+          </a>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+
+</html>

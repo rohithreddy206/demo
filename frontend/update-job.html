@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecruitPro — Update Job Requirement</title>
+  <meta name="description" content="Search and update existing job requirements in RecruitPro" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/forms.css" />
+</head>
+<body>
+
+<div class="app-wrapper">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" role="navigation" aria-label="Main Navigation">
+    <div class="sidebar-logo">
+      <div class="logo-text">
+        <span class="logo-icon">💼</span> RecruitPro
+      </div>
+      <div class="logo-sub">Recruitment Management</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" id="nav-dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="create-job.html" id="nav-create">
+        <span class="nav-icon">➕</span> Create Job
+      </a>
+      <a href="update-job.html" class="active" id="nav-update">
+        <span class="nav-icon">✏️</span> Update Job
+      </a>
+      <a href="add-candidate.html" id="nav-candidate">
+        <span class="nav-icon">👤</span> Add Candidate
+      </a>
+      <a href="#" id="logout-btn">
+        <span class="nav-icon">🚪</span> Logout
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <span class="user-name" id="sidebar-user-name">—</span>
+        <span class="user-role-badge" id="sidebar-user-role">—</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <div id="toast-container" aria-live="polite"></div>
+
+    <div class="page-header">
+      <h1>Update Job Requirement</h1>
+      <p>UC 6.2 — Search for a job opening by date or company name, then edit and save changes.</p>
+    </div>
+
+    <!-- Step 1 — Search -->
+    <div class="card">
+      <div class="card-title">
+        <span class="card-title-icon">🔍</span> Search Job Requirements
+      </div>
+
+      <form id="search-form" novalidate>
+        <div class="search-bar">
+          <div class="form-group">
+            <label for="search-date">Date</label>
+            <input type="date" id="search-date" name="search-date" />
+          </div>
+          <div class="form-group">
+            <label for="search-company">Company Name</label>
+            <input type="text" id="search-company" name="search-company" placeholder="e.g. Infosys" />
+          </div>
+          <div class="search-actions">
+            <button type="submit" id="search-btn" class="btn-primary">🔍 Search</button>
+            <button type="button" id="search-reset-btn" class="btn-reset">Clear</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Step 2 — Results table -->
+    <div id="results-section" style="display:none;">
+      <div class="card">
+        <div class="results-header">
+          <h2>Search Results</h2>
+          <span class="results-count" id="results-count">0 record(s)</span>
+        </div>
+
+        <div id="table-wrapper" class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Company</th>
+                <th>Job Title</th>
+                <th>Candidates</th>
+                <th>Experience</th>
+                <th>Package</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="results-tbody"></tbody>
+          </table>
+        </div>
+
+        <div id="no-data" class="empty-state" style="display:none;">
+          <div class="empty-icon">📭</div>
+          <p>No job requirements found matching your search criteria.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 — Edit panel -->
+      <div id="edit-panel" class="edit-panel card">
+        <div class="edit-panel-header">
+          <h3>✏️ Edit Job Requirement</h3>
+          <button id="close-edit-btn" class="btn-close-edit" type="button" aria-label="Close edit panel">✕</button>
+        </div>
+
+        <!-- Hidden field to track which job is being edited -->
+        <form id="edit-form" novalidate>
+          <input type="hidden" id="edit-job-id" />
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="edit-job-title">Job Title <span style="color:var(--error)">*</span></label>
+              <input type="text" id="edit-job-title" name="edit-job-title" required />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-num-candidates">Number of Candidates <span style="color:var(--error)">*</span></label>
+              <input type="number" id="edit-num-candidates" name="edit-num-candidates" min="1" required />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-experience">Experience</label>
+              <input type="text" id="edit-experience" name="edit-experience" placeholder="e.g. 3-5 years" />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-package">Budgeted Package</label>
+              <input type="text" id="edit-package" name="edit-package" placeholder="e.g. 12-18 LPA" />
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="save-btn" class="btn-primary">💾 Save Changes</button>
+              <button type="button" id="cancel-edit-btn" class="btn-reset">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div><!-- /#edit-panel -->
+
+    </div><!-- /#results-section -->
+
+  </main>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/update-job.js"></script>
+<script>
+  // Wire cancel button inside edit panel
+  document.getElementById('cancel-edit-btn').addEventListener('click', () => {
+    document.getElementById('edit-panel').classList.remove('visible');
+  });
+</script>
+</body>
+</html>

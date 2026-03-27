@@ -1,0 +1,559 @@
+/* ============================================================
+   candidate.css — Premium Candidate Registration form styles
+   ============================================================ */
+
+/* ── Page header with icon ── */
+.cand-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.page-header-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2563EB 0%, #1d4fd8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 15px rgba(37,99,235,0.35);
+  flex-shrink: 0;
+}
+
+.step-indicator {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 20px;
+  border: 1.5px solid rgba(37,99,235,0.2);
+}
+
+/* ── Progress bar ── */
+.progress-bar-wrapper {
+  margin-bottom: 28px;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 0;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+}
+
+.progress-step span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.step-bubble {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  border: 2.5px solid var(--border);
+}
+
+.progress-step.active .step-bubble {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.2);
+  transform: scale(1.1);
+}
+
+.progress-step.done .step-bubble {
+  background: #16A34A;
+  color: #fff;
+  border-color: #16A34A;
+}
+
+.progress-step.active span,
+.progress-step.done span {
+  color: var(--text-main);
+}
+
+.progress-connector {
+  flex: 1;
+  height: 2.5px;
+  background: var(--border);
+  margin: 0 8px;
+  margin-bottom: 22px;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-connector::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.5s ease;
+}
+
+.progress-connector.done::after { width: 100%; }
+
+.progress-bar-track {
+  height: 5px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563EB, #6366f1);
+  border-radius: 10px;
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── Form steps ── */
+.form-step { display: none; }
+.form-step.active { display: block; animation: stepIn 0.35s ease forwards; }
+
+@keyframes stepIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Card enhancements ── */
+.candidate-card {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  position: relative;
+  overflow: hidden;
+}
+
+.candidate-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: -60px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.card-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 20px;
+  letter-spacing: 0.4px;
+}
+
+/* ── Input with icon ── */
+.input-icon-wrap {
+  position: relative;
+}
+
+.input-icon-wrap .input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+  z-index: 1;
+  line-height: 1;
+}
+
+.input-icon-wrap input,
+.input-icon-wrap select {
+  width: 100%;
+  padding-left: 38px !important;
+}
+
+.input-icon-wrap.select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.input-icon-wrap.select-wrap::after {
+  content: '▾';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* Required field marker */
+.req {
+  color: var(--error);
+  font-weight: 700;
+}
+
+/* Field hint */
+.field-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.field-hint kbd {
+  font-family: monospace;
+  font-size: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+
+/* ── Skills tag input ── */
+.skills-container {
+  min-height: 52px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  cursor: text;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  background: var(--white);
+}
+
+.skills-container:focus-within {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.skills-container input {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  padding: 0 4px !important;
+  height: 32px !important;
+  box-shadow: none !important;
+  font-size: 14px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+  color: #1E40AF;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(37,99,235,0.25);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+.skill-tag:hover {
+  background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+  transform: scale(0.97);
+}
+
+.skill-tag .tag-remove {
+  font-size: 10px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.skill-tag:hover .tag-remove { opacity: 1; }
+
+/* ── Step actions ── */
+.step-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-next, .btn-prev { min-width: 200px; justify-content: center; }
+
+/* ── CTC Comparison Card ── */
+.ctc-compare-card {
+  background: linear-gradient(135deg, #F0F9FF 0%, #EFF6FF 100%);
+  border: 1px solid rgba(37,99,235,0.2);
+  border-radius: 12px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ctc-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.ctc-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.ctc-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.ctc-value.accent { color: var(--accent); }
+.ctc-value.success { color: var(--success); }
+
+.ctc-arrow {
+  font-size: 22px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* ── Upload Zone ── */
+.resume-section {
+  margin-bottom: 28px;
+}
+
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 48px 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.15s ease;
+  background: var(--bg);
+  position: relative;
+}
+
+.upload-zone:hover,
+.upload-zone:focus,
+.upload-zone.drag-over {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  transform: scale(1.005);
+  outline: none;
+}
+
+.upload-icon {
+  font-size: 44px;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.upload-zone:hover .upload-icon { transform: translateY(-4px); }
+
+.upload-primary {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.upload-secondary {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.upload-link {
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.upload-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: rgba(0,0,0,0.04);
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-top: 4px;
+}
+
+/* File preview */
+.file-preview {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #F0FFF4;
+  border: 1.5px solid #86EFAC;
+  border-radius: 10px;
+  padding: 16px 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.file-icon { font-size: 32px; }
+
+.file-meta { flex: 1; }
+
+.file-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.file-size {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.btn-remove-file {
+  background: none;
+  border: 1.5px solid #FCA5A5;
+  border-radius: 6px;
+  color: var(--error);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 10px;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+}
+
+.btn-remove-file:hover {
+  background: var(--error);
+  color: #fff;
+}
+
+/* ── Review Summary ── */
+.review-summary {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  background: var(--bg);
+  margin-top: 8px;
+}
+
+.review-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.review-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.review-key {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.review-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  word-break: break-word;
+}
+
+.review-val.empty { color: var(--text-muted); font-weight: 400; font-style: italic; }
+
+/* ── Spinner ── */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Submit button enhancement ── */
+.btn-submit {
+  min-width: 220px;
+  justify-content: center;
+  background: linear-gradient(135deg, #16A34A 0%, #15803d 100%);
+  box-shadow: 0 4px 14px rgba(22,163,74,0.35);
+  letter-spacing: 0.3px;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+  box-shadow: 0 6px 18px rgba(22,163,74,0.45);
+}
+
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .cand-page-header { flex-direction: column; align-items: flex-start; }
+  .progress-steps { gap: 0; }
+  .progress-step span { font-size: 10px; }
+  .step-bubble { width: 30px; height: 30px; font-size: 12px; }
+  .upload-zone { padding: 32px 16px; }
+  .ctc-compare-card { justify-content: center; }
+  .btn-next, .btn-prev { min-width: unset; flex: 1; }
+}
